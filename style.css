@@ -1,7 +1,23 @@
 body	{
-	background-color: #ff0000;
+	background-color: #000000;
+}
+
+@font-face	{
+	font-family: CenturyGothic;
+	src: url(Images/century-gothic.ttf);
 }
 
 #clock	{
-
+	position: fixed;
+	top: 45%;
+	color: #edf669;
+	font-family: CenturyGothic, sans-serif;
+	font-size: 100px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
 }
+
+/*#readout	{
+	text-align: center;
+}*/

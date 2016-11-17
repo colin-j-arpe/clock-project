@@ -7,7 +7,7 @@ var clock = document.getElementById("clock");
 var screen = document.getElementById("page");
 var counter;
 
-window.setInterval (updateClock, 2000);
+window.setInterval (updateClock, 1000);
 
 function updateClock ()	{
 	now = new Date();
@@ -15,18 +15,28 @@ function updateClock ()	{
 	// hour = now.getHours();
 	// minute = now.getMinutes();
 	// second = now.getSeconds();
+	for (var i = 0; i < time.length; i++) {
+		time[i] = addZeroDec(time[i]);
+	}
 	clock.innerText	= (time[0] + ":" + time[1] + ":" + time[2]);
 	reColour(time);
 }
 
 function reColour (colour)	{
 	for (var i = 0; i < colour.length; i++) {
-		colour[i] = addZero((colour[i]*4));
+		colour[i] = addZeroHex((colour[i]*4));
 	}
 	screen.style.backgroundColor = "#" + time[0]+ time[1]+ time[2];
 }
 
-function addZero (num)	{
+function addZeroDec (num)	{
+	if (num < 10)	{
+		num = "0" + num;
+	}
+	return num;
+}
+
+function addZeroHex (num)	{
 	num = num.toString(16)
 	if (num.length < 2) {
 		num = "0" + num;
