@@ -1,27 +1,44 @@
 var now = new Date();
-var hour = now.getHours();
-var minute = now.getMinutes();
-var second = now.getSeconds();
+var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
+// var hour = now.getHours();
+// var minute = now.getMinutes();
+// var second = now.getSeconds();
 var clock = document.getElementById("clock");
-var screen = document.getElementsByTagName("body")[0];
+var screen = document.getElementById("page");
 var counter;
 
 window.setInterval (updateClock, 2000);
 
 function updateClock ()	{
 	now = new Date();
-	hour = now.getHours();
-	minute = now.getMinutes();
-	second = now.getSeconds();
-	clock.innerText	= (hour + ":" + minute + ":" + second);
-	reColour(hour, minute, second);
+	time = [now.getHours(), now.getMinutes(), now.getSeconds()];
+	// hour = now.getHours();
+	// minute = now.getMinutes();
+	// second = now.getSeconds();
+	clock.innerText	= (time[0] + ":" + time[1] + ":" + time[2]);
+	reColour(time);
 }
 
-function reColour (r, g, b)	{
-	var colourString = "rgb (" + r + "," + g + "," + b + ")"
-	console.log(colourString);
-	screen.style.backgroundColor = colourString;
+function reColour (colour)	{
+	for (var i = 0; i < colour.length; i++) {
+		colour[i] = addZero((colour[i]*4));
+	}
+	screen.style.backgroundColor = "#" + time[0]+ time[1]+ time[2];
 }
+
+function addZero (num)	{
+	num = num.toString(16)
+	if (num.length < 2) {
+		num = "0" + num;
+	}
+	return num;
+}
+
+// function reColour (r, g, b)	{
+// 	var colourString = "rgb (" + (r*4) + "," + (g*4) + "," + (b*4) + ");";
+// 	console.log(colourString);
+// 	screen.style.backgroundColor = "colourString";
+// }
 
 // setTimeout (updateClock, 2000);
 
