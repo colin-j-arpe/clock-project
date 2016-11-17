@@ -1,5 +1,4 @@
 var now = new Date();
-var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
 // var hour = now.getHours();
 // var minute = now.getMinutes();
 // var second = now.getSeconds();
@@ -11,7 +10,7 @@ window.setInterval (updateClock, 1000);
 
 function updateClock ()	{
 	now = new Date();
-	time = [now.getHours(), now.getMinutes(), now.getSeconds()];
+	var time = [now.getHours(), now.getMinutes(), now.getSeconds()];
 	// hour = now.getHours();
 	// minute = now.getMinutes();
 	// second = now.getSeconds();
@@ -19,14 +18,24 @@ function updateClock ()	{
 		time[i] = addZeroDec(time[i]);
 	}
 	clock.innerText	= (time[0] + ":" + time[1] + ":" + time[2]);
-	reColour(time);
+	reColourScreen(time);
+	reColourText(time);
 }
 
-function reColour (colour)	{
-	for (var i = 0; i < colour.length; i++) {
-		colour[i] = addZeroHex((colour[i]*4));
+function reColourScreen (timeScreen)	{
+	var	colour = [0,0,0];
+	for (var i = 0; i < timeScreen.length; i++) {
+		colour[i] = addZeroHex((timeScreen[i]*4));
 	}
-	screen.style.backgroundColor = "#" + time[0]+ time[1]+ time[2];
+	screen.style.backgroundColor = "#" + colour[0]+ colour[1]+ colour[2];
+}
+
+function reColourText (timeText)	{
+	var	colour = [0,0,0];
+	for (var i = 0; i < colour.length; i++) { 
+		colour[i] = addZeroHex((255-(timeText[i]*4)));
+	}
+	screen.style.color = "#" + colour[0]+ colour[1]+ colour[2];
 }
 
 function addZeroDec (num)	{
