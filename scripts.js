@@ -18,7 +18,6 @@ function checkSeconds ()	{
 		window.setInterval (sendMessage, 60000);
 		window.setInterval (changePic, 60000);
 		window.clearInterval (messageStarts);
-console.log("check stopped");
 	}
 }
 
@@ -168,8 +167,7 @@ var eventText = [
 	"Story time",
 	"Lights out",
 	"Quiet time",
-	"Turn in homework",
-	"Test message"];
+	"Turn in homework"];
 
 function sendMessage ()	{
 	now = new Date();
@@ -232,10 +230,6 @@ function sendMessage ()	{
 	}
 	if (now.getHours() === 23 && now.getMinutes() === 50) {
 		sendText(19)
-	}
-	if (now.getHours() === 23 && now.getMinutes() === 35) {
-		console.log("test");
-		sendText(20);
 	}
 }
 
