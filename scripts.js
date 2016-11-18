@@ -36,17 +36,23 @@ function updateClock ()	{
 
 function reColourScreen (timeScreen)	{
 	var	colour = [0,0,0];
-	for (var i = 0; i < timeScreen.length; i++) {
-		colour[i] = addZeroHex((timeScreen[i]*4));
-	}
+	colour[0] = addZeroHex((timeScreen[0]*11));
+	colour[1] = addZeroHex((timeScreen[1]*4));
+	colour[2] = addZeroHex((timeScreen[2]*4));
+	// for (var i = 0; i < timeScreen.length; i++) {
+	// 	colour[i] = addZeroHex((timeScreen[i]*4));
+	// }
 	clock.style.backgroundColor = "#" + colour[0]+ colour[1]+ colour[2];
 }
 
 function reColourText (timeText)	{
 	var	colour = [0,0,0];
-	for (var i = 0; i < colour.length; i++) { 
-		colour[i] = addZeroHex((255-(timeText[i]*4)));
-	}
+	colour[0] = addZeroHex((255-(timeText[0]*11)));
+	colour[1] = addZeroHex((255-(timeText[1]*4)));
+	colour[2] = addZeroHex((255-(timeText[2]*4)));
+	// for (var i = 0; i < colour.length; i++) { 
+	// 	colour[i] = addZeroHex((255-(timeText[i]*4)));
+	// }
 	clock.style.color = "#" + colour[0]+ colour[1]+ colour[2];
 }
 
@@ -148,9 +154,9 @@ function sendMessage ()	{
 		sendText(18);
 	}
 	if (now.getHours() === 23 && now.getMinutes() === 50) {
-		sendText(19);
+		sendText(19)
 	}
-	if (now.getHours() === 22 && now.getMinutes() === 56) {
+	if (now.getHours() === 23 && now.getMinutes() === 35) {
 		console.log("test");
 		sendText(20);
 	}
