@@ -5,8 +5,10 @@ var now = new Date();
 var clock = document.getElementById("clock");
 var screen = document.getElementById("page");
 var message = document.getElementById("message");
+var picture = document.getElementsByClassName("picture");
 var counter;
 var messageOpacity = 1
+var pictureOpacity = 1
 
 window.setInterval (updateClock, 1000);
 var messageStarts = window.setInterval (checkSeconds, 10)
@@ -14,11 +16,11 @@ function checkSeconds ()	{
 	now = new Date();
 	if (now.getSeconds() === 1)	{
 		window.setInterval (sendMessage, 60000);
+		window.setInterval (changePic, 60000);
 		window.clearInterval (messageStarts);
 console.log("check stopped");
 	}
 }
-
 
 function updateClock ()	{
 	now = new Date();
@@ -69,6 +71,81 @@ function addZeroHex (num)	{
 		num = "0" + num;
 	}
 	return num;
+}
+
+var backPic = [
+	"url('Images/0000.jpg')",
+	"url('Images/0200.jpg')",
+	"url('Images/0400.jpg')",
+	"url('Images/0530.jpg')",
+	"url('Images/0800.jpg')",
+	"url('Images/1100.jpg')",
+	"url('Images/1330.jpg')",
+	"url('Images/1530.jpg')",
+	"url('Images/1700.jpg')",
+	"url('Images/1800.jpg')",
+	"url('Images/1900.jpg')",
+	"url('Images/2000.jpg')",
+	"url('Images/2200.jpg')"];
+
+function changePic ()	{
+	now = new Date();
+	if (now.getHours() === 0 && now.getMinutes() === 0) {
+		newPic(0);
+	}
+	if (now.getHours() === 2 && now.getMinutes() === 0) {
+		newPic(1);
+	}
+	if (now.getHours() === 4 && now.getMinutes() === 0) {
+		newPic(2);
+	}
+	if (now.getHours() === 5 && now.getMinutes() === 30) {
+		newPic(3);
+	}
+	if (now.getHours() === 8 && now.getMinutes() === 0) {
+		newPic(4);
+	}
+	if (now.getHours() === 11 && now.getMinutes() === 0) {
+		newPic(5);
+	}
+	if (now.getHours() === 13 && now.getMinutes() === 30) {
+		newPic(6);
+	}
+	if (now.getHours() === 15 && now.getMinutes() === 30) {
+		newPic(7);
+	}
+	if (now.getHours() === 17 && now.getMinutes() === 0) {
+		newPic(8);
+	}
+	if (now.getHours() === 18 && now.getMinutes() === 0) {
+		newPic(9);
+	}
+	if (now.getHours() === 19 && now.getMinutes() === 0) {
+		newPic(10);
+	}
+	if (now.getHours() === 20 && now.getMinutes() === 0) {
+		newPic(11);
+	}
+	if (now.getHours() === 22 && now.getMinutes() === 0) {
+		newPic(12);
+	}
+}
+
+function newPic (i)	{	
+	picture[1].style.backgroundImage = backPic[i]
+	pictureOpacity = 100;
+	picture[0].style.opacity = 1.0;
+	var stop = window.setInterval (fadePic, 3000);
+	function fadePic ()	{
+		if (pictureOpacity < 0)	{
+			window.clearInterval (stop);
+			picture[0].style.backgroundImage = backPic[i];
+			picture[0].style.opacity = 1.0;
+		}	else 	{
+		picture[0].style.opacity = (pictureOpacity * 0.01);
+		pictureOpacity--;
+		}
+	}
 }
 
 var eventText = [
@@ -167,15 +244,17 @@ function sendText (i)	{
 	message.style.opacity = 1.0;
 	message.innerText = eventText[i];
 	var stop = window.setInterval (fadeMessage, 1200);
-	if (messageOpacity < 0)	{
-		window.clearInterval (stop);
+
+	function fadeMessage ()	{
+		if (messageOpacity < 0)	{
+			window.clearInterval (stop);
+		}	else 	{
+		message.style.opacity = (messageOpacity * 0.01);
+		messageOpacity--;
+		}
 	}
 }
 
-function fadeMessage ()	{
-	message.style.opacity = (messageOpacity * 0.01);
-	messageOpacity--;
-}
 
 // function reColour (r, g, b)	{
 // 	var colourString = "rgb (" + (r*4) + "," + (g*4) + "," + (b*4) + ");";
