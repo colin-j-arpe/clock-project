@@ -65,75 +65,101 @@ function addZeroHex (num)	{
 	return num;
 }
 
+var eventText = [
+	"Wake up",
+	"Wake up the girls",
+	"Get breakfast",
+	"Get dressed and brush teeth",
+	"Leave for school",
+	"School starts",
+	"Class begins",
+	"Time for lunch",
+	"Lunch is over",
+	"School's out",
+	"Throw something at Chris",
+	"Dinner time",
+	"Class is over",
+	"Bath time",
+	"Last call",
+	"Teeth, Jamas, Potty",
+	"Story time",
+	"Lights out",
+	"Quiet time",
+	"Turn in homework",
+	"Test message"];
+
 function sendMessage ()	{
 	now = new Date();
 	if (now.getHours() === 6 && now.getMinutes() === 55) {
 		sendText(0);
 	}
 	if (now.getHours() === 7 && now.getMinutes() === 00) {
-		sendWakeGirls();
+		sendText(1);
 	}
 	if (now.getHours() === 7 && now.getMinutes() === 15) {
-		sendBreakfast();
+		sendText(2);
 	}
 	if (now.getHours() === 7 && now.getMinutes() === 40) {
-		sendBrushTeeth();
+		sendText(3);
 	}
 	if (now.getHours() === 7 && now.getMinutes() === 55) {
-		sendLeaveHouse();
+		sendText(4);
 	}
 	if (now.getHours() === 8 && now.getMinutes() === 15) {
-		sendSchoolStarts();
+		sendText(5);
 	}
 	if (now.getHours() === 10 && now.getMinutes() === 00) {
-		sendClassStarts();
+		sendText(6);
 	}
 	if (now.getHours() === 12 && now.getMinutes() === 30) {
-		sendLunchStarts();
+		sendText(7);
 	}
 	if (now.getHours() === 13 && now.getMinutes() === 30) {
-		sendLunchEnds();
+		sendText(8);
 	}
 	if (now.getHours() === 15 && now.getMinutes() === 30) {
-		sendSchoolEnds();
+		sendText(9);
+	}
+	if (now.getHours() === 16 && now.getMinutes() === 00) {
+		sendText(10);
 	}
 	if (now.getHours() === 17 && now.getMinutes() === 30) {
-		sendDinner();
+		sendText(11);
 	}
 	if (now.getHours() === 18 && now.getMinutes() === 00) {
-		sendClassEnds();
+		sendText(12);
 	}
 	if (now.getHours() === 18 && now.getMinutes() === 30) {
-		sendBathTime();
+		sendText(13);
 	}
 	if (now.getHours() === 18 && now.getMinutes() === 50) {
-		sendLastCall();
+		sendText(14);
 	}
 	if (now.getHours() === 19 && now.getMinutes() === 00) {
-		sendTeethJamasPotty();
+		sendText(15);
 	}
 	if (now.getHours() === 19 && now.getMinutes() === 15) {
-		sendStoryTime();
+		sendText(16);
 	}
 	if (now.getHours() === 19 && now.getMinutes() === 30) {
-		sendChatTime();
+		sendText(17);
 	}
 	if (now.getHours() === 19 && now.getMinutes() === 50) {
-		sendQuietTime();
+		sendText(18);
 	}
 	if (now.getHours() === 23 && now.getMinutes() === 50) {
-		sendHomeworkDue();
+		sendText(19);
 	}
-	if (now.getHours() === 22 && now.getMinutes() === 41) {
+	if (now.getHours() === 22 && now.getMinutes() === 56) {
 		console.log("test");
-		sendTestEvent();
+		sendText(20);
 	}
 }
 
-function sendTestEvent ()	{
+function sendText (i)	{
 	messageOpacity = 100;
 	message.style.opacity = 1.0;
-	message.innerText = "Test Event";
+	message.innerText = eventText[i];
 	var stop = window.setInterval (fadeMessage, 1200);
 	if (messageOpacity < 0)	{
 		window.clearInterval (stop);
